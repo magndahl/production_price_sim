@@ -10,14 +10,16 @@ from scipy.special import erfc
 
 #%% This first section just loads default values for initiation of the class
 
-# this is the same function as Teff_sim in effective_temperature.py
-def Teff(x, c, e, f, h, i):
+# this is the same function as Teff_sim in effective_temperature.py, except
+# for the normalization of the parameters
+def Teff(x, a, b, c, d, e, f):
     """ x must be a matrix with each row being a weather time series in
         this order: Tout, vWind, Toutavg24, vWindavg24, sunRadavg24, Tgrnd100avg24
-        
+        The parameters must be normalized, so they already have N multiplied
+        into them (a=N). See effective_temperature.pdf
         """
-    Teff = x[0,:] + c*x[1,:] + e*x[2,:] + f*x[3,:] + h*x[4,:] + i*x[5,:]
-    Teff *= np.mean(x[0,:])/np.mean(Teff)
+    Teff = a*x[0] + b*x[1] + c*x[2] + d*x[3] + e*x[4] + f*x[5]
+    
     return Teff
 
 # This model for the production as a function of temperature or effective temperature
@@ -28,7 +30,7 @@ def P_model_erf(T, P0, B, T0, sigma):
     return B*(T-T0)*0.5*erfc((T-T0)/(np.sqrt(2)*sigma)) \
              - B*sigma/(np.sqrt(2*np.pi))*np.exp(-(T-T0)**2/(2*sigma**2))+P0
 
-Teff_params = np.load('settings/Teff_params_allhours.npy')
+Teff_params = np.load('settings/normed_Teff_params.npy')
 def default_Teff(x):
     return Teff(x, *Teff_params)    
 
