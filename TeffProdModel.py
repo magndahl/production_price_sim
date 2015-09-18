@@ -48,12 +48,32 @@ class TeffProdModel(object):
     def __init__(self, Teff_function=default_Teff,\
                        prod_function=default_prod_model,\
                        residual=default_residual):
+        """ Args:
+                Teff_function: Function that takes a weather data point
+                                and returns an effective temperature.
+                prod_function: Function that takes an effective temperature
+                                and returns a production i MW
+                residual: Array of weather independent part of the production
+            Returns:
+                TeffProdModel object
+                
+                """
         self.Teff_function = Teff_function
         self.prod_function = prod_function
         self.residual = residual
         
     
     def get_production(self, weather_data_point, hour_in_year):
+        """ Args:
+                weather_data_point: 1d array of a weather data point, must
+                                    match the requirements of the Teff_function
+                hour_in_year: number of the hour in the year, used for
+                                adding the right value of the weather
+                                independent residual to the production
+            Returns:
+                production in MW of
+                
+            """
         Teff = self.Teff_function(weather_data_point)
         production = self.prod_function(Teff) + self.residual[hour_in_year]
         
