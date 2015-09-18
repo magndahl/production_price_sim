@@ -4,9 +4,10 @@ Created on Mon Sep 14 14:59:21 2015
 
 @author: Magnus Dahl
 """
-
+import os
 import numpy as np
 from scipy.special import erfc
+
 
 #%% This first section just loads default values for initiation of the class
 
@@ -29,16 +30,16 @@ def Teff(x, a, b, c, d, e, f):
 def P_model_erf(T, P0, B, T0, sigma):
     return B*(T-T0)*0.5*erfc((T-T0)/(np.sqrt(2)*sigma)) \
              - B*sigma/(np.sqrt(2*np.pi))*np.exp(-(T-T0)**2/(2*sigma**2))+P0
-
-Teff_params = np.load('settings/normed_Teff_params.npy')
+path = os.path.dirname(os.path.abspath(__file__)) + '\\settings\\'
+Teff_params = np.load(path + 'normed_Teff_params.npy')
 def default_Teff(x):
     return Teff(x, *Teff_params)    
 
-P_model_params = np.load('settings/fit_params_all_h0-23.npy')
+P_model_params = np.load(path + 'fit_params_all_h0-23.npy')
 def default_prod_model(T):
     return P_model_erf(T, *P_model_params)    
     
-default_residual = np.load('settings/weather_indep_residuals.npy')
+default_residual = np.load(path + 'weather_indep_residuals.npy')
 
 
 #%%  Here comes the class definition
