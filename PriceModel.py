@@ -12,14 +12,14 @@ config_dict = {'avg':[('Forbraending Lisbjerg', 130, 68.3),
                    ('Studstrup vaerket', 297, 910),
                    ('Oliekedler', 850, 10e4)]
                    ,
-        'optimistic':[('Forbraending Lisbjerg', 130, 81.),
-                   ('Renosyd', 122, 23),
+        'optimistic':[('Forbraending Lisbjerg', 130, 71.1),
+                   ('Renosyd', 122, 23.8),
                    ('Skanderborg flis', 235, 24.),
                    ('Studstrup vaerket', 297, 910),
                    ('Oliekedler', 850, 10e4)]
                    ,
-    'pessimistic':[('Forbraending Lisbjerg', 130, 52.),
-                   ('Renosyd', 122, 11),
+    'pessimistic':[('Forbraending Lisbjerg', 130, 41.1),
+                   ('Renosyd', 122, 11.9),
                    ('Skanderborg flis', 235, 11.),
                    ('Studstrup vaerket', 297, 910),
                    ('Oliekedler', 850, 10e4)]
