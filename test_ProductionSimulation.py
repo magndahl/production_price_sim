@@ -27,7 +27,7 @@ for v in varlist:
 weatherdata = np.array(dataarrays)
 
 timesteps = np.load(path + 'timestep' + suffix)
-allhours2014 = [dt.datetime(2014,1,1,0,0) + dt.timedelta(hours=x) for x in xrange(24*365)]
+allhours2014 = [dt.datetime(2014,1,1,1,0) + dt.timedelta(hours=x) for x in xrange(24*365)]
 hours_in_year = [allhours2014.index(t) for t in timesteps]
 
 
@@ -38,7 +38,7 @@ mysim = ProductionSimulation(weather_data_point=weatherdata[:,0],
                              
             
             
-for i in range(10):
+for i in range(100):
     mysim.weather_data_point = weatherdata[:,i]
     mysim.hour_in_year = i
     mysim.run_simulation()

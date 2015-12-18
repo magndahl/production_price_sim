@@ -28,7 +28,7 @@ weatherdata = np.array(dataarrays)
 loaded_production = np.load(path + 'prod' + suffix)
 
 timesteps = np.load(path + 'timestep' + suffix)
-allhours2014 = [dt.datetime(2014,1,1,0,0) + dt.timedelta(hours=x) for x in xrange(24*365)]
+allhours2014 = [dt.datetime(2014,1,1,1,0) + dt.timedelta(hours=x) for x in xrange(24*365)]
 hours_in_year = [allhours2014.index(t) for t in timesteps]
 
 modeled_prod = []
